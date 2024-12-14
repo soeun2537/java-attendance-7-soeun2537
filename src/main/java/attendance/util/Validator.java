@@ -71,7 +71,8 @@ public class Validator {
 
     public static void validateSchoolDay() {
         if (DateTimes.now().getDayOfWeek().getValue() == 6 || DateTimes.now().getDayOfWeek().getValue() == 7) {
-            throw new IllegalArgumentException(NOT_SCHOOL_DAY.getMessage(DateTimes.now().getMonth().getValue(), DateTimes.now().getDayOfMonth()));
+            throw new IllegalArgumentException(
+                    NOT_SCHOOL_DAY.getMessage(DateTimes.now().getMonth().getValue(), DateTimes.now().getDayOfMonth()));
         }
     }
 }

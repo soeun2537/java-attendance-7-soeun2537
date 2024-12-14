@@ -22,7 +22,6 @@ public class Parser {
         return Integer.parseInt(input);
     }
 
-    // 2024-12-14 14:46로 입력
     public static LocalDateTime parseDateTime(String input, String separator) {
         List<String> separatedDate = separateBySeparator(input, separator);
         List<String> yearAndMonthAndDay = separateBySeparator(separatedDate.get(0), DATE_SEPARATOR.getContent());
