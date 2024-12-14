@@ -111,6 +111,7 @@ public class AttendanceRepository {
         return total;
     }
 
+    // TODO: 해당 하드코딩 상수화
     public String getSubject(String nickname) {
         Integer absenceTotal = getTotal(nickname).get(2);
         if (absenceTotal == 2) {
