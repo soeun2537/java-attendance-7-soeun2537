@@ -9,7 +9,6 @@ import attendance.repository.AttendanceRepository;
 import attendance.util.FileParser;
 import attendance.util.Parser;
 import camp.nextstep.edu.missionutils.DateTimes;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
@@ -32,11 +31,11 @@ public class AttendanceService {
 
     public LocalDateTime addAttendance(String nickname, String attendanceTime) {
         String dateTime = Parser.attach(DateTimes.now().toString(), attendanceTime, SPACE.getContent());
-        List<String> separatedDateTime = Parser.separateBySeparator(dateTime, " ");
-        String date = Parser.separateBySeparator(separatedDateTime.get(0), "T").get(0);
+        List<String> separatedDateTime = Parser.separateBySeparator(dateTime, SPACE.getContent());
+        String date = Parser.separateBySeparator(separatedDateTime.get(0), T.getContent()).get(0);
         String time = separatedDateTime.get(1);
-        String attach = Parser.attach(date, time, " ");
-        LocalDateTime attendance = Parser.parseDateTime(attach, " ");
+        String attach = Parser.attach(date, time, SPACE.getContent());
+        LocalDateTime attendance = Parser.parseDateTime(attach, SPACE.getContent());
         attendanceRepository.add(Attendance.from(nickname, attendance));
         return attendance;
     }
