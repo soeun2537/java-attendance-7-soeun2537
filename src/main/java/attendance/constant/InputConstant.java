@@ -11,6 +11,7 @@ public enum InputConstant {
     FILE_SEPARATOR(","),
     DATE_SEPARATOR("-"),
     SPACE(" "),
+    T("T"),
     ;
 
     private final String content;
