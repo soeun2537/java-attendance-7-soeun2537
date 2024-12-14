@@ -57,6 +57,11 @@ public class OutputView {
 
     public static void printModificationGuidance(List<AttendanceRecord> records) {
         printNewLine();
+        printModification(records);
+        printNewLine();
+    }
+
+    private static void printModification(List<AttendanceRecord> records) {
         println(MODIFICATION_GUIDANCE.getMessage(
                 records.get(0).getLocalDateTime().getMonthValue(),
                 records.get(0).getLocalDateTime().getDayOfMonth(),
@@ -68,7 +73,6 @@ public class OutputView {
                 records.get(1).getLocalDateTime().getMinute(),
                 records.get(1).getCheck().name()
         ));
-        printNewLine();
     }
 
     public static void printAttendanceRecord(List<AttendanceRecord> attendanceRecords) {
@@ -123,15 +127,19 @@ public class OutputView {
         println(RISK_OF_EXPULSION_GUIDANCE.getMessage());
         for (Subject subject : subjects) {
             if (!subject.getSubject().equals("정상")) {
-                println(RISK_OF_EXPULSION.getMessage(
-                        subject.getNickname(),
-                        subject.getBeLateTotal(),
-                        subject.getAbsenceTotal(),
-                        subject.getSubject()
-                ));
+                printSubjectsDetials(subject);
             }
         }
         printNewLine();
+    }
+
+    private static void printSubjectsDetials(Subject subject) {
+        println(RISK_OF_EXPULSION.getMessage(
+                subject.getNickname(),
+                subject.getBeLateTotal(),
+                subject.getAbsenceTotal(),
+                subject.getSubject()
+        ));
     }
 
     public static void printErrorMessage(RuntimeException e) {
