@@ -2,7 +2,6 @@ package attendance.view;
 
 import static attendance.constant.InputConstant.*;
 
-import attendance.model.Time;
 import attendance.util.Parser;
 import attendance.util.Validator;
 import camp.nextstep.edu.missionutils.Console;
@@ -30,6 +29,11 @@ public class InputView {
         String input = input();
         Validator.validateNotNull(input);
         Validator.validateTime(input);
+        validateTime(input);
+        return input;
+    }
+
+    private static void validateTime(String input) {
         List<String> separatedTime = Parser.separateBySeparator(input, TIME_SEPARATOR.getContent());
         String hour = separatedTime.get(0);
         String minute = separatedTime.get(1);
@@ -39,7 +43,6 @@ public class InputView {
         int convertedMinute = Parser.convertStringToInteger(minute);
         Validator.validateHour(convertedHour);
         Validator.validateMinute(convertedMinute);
-        return input;
     }
 
     public static int readDay() {
