@@ -32,7 +32,11 @@ public class AttendanceService {
 
     public LocalDateTime addAttendance(String nickname, String attendanceTime) {
         String dateTime = Parser.attach(DateTimes.now().toString(), attendanceTime, SPACE.getContent());
-        LocalDateTime attendance = Parser.parseDateTime(dateTime, "T");
+        List<String> separatedDateTime = Parser.separateBySeparator(dateTime, " ");
+        String date = Parser.separateBySeparator(separatedDateTime.get(0), "T").get(0);
+        String time = separatedDateTime.get(1);
+        String attach = Parser.attach(date, time, " ");
+        LocalDateTime attendance = Parser.parseDateTime(attach, " ");
         attendanceRepository.add(Attendance.from(nickname, attendance));
         return attendance;
     }
